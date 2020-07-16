@@ -44,15 +44,12 @@
 				this.targetImage.setSrc(ProxyImage.LOADING_URL)
 				// 创建一个帮我们加载图片的虚拟Image实例
 				const virtualImage = new Image()
-				// 监听目标图片加载的情况，完成时再将DOM上的真实img节点的src属性设置为目标图片的url
-				virtualImage.onload = () => {
-					// this.targetImage.setSrc(targetUrl)
-					setTimeout(() => {
-						this.targetImage.setSrc(targetUrl)
-					}, 500)
-				}
 				// 设置src属性，虚拟Image实例开始加载图片
 				virtualImage.src = targetUrl
+				// 监听目标图片加载的情况，完成时再将DOM上的真实img节点的src属性设置为目标图片的url
+				virtualImage.onload = () => {
+					this.targetImage.setSrc(targetUrl)
+				}
 			}
 		}
 		const targetUrl = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594873804010&di=e4565b081f6af23e19f7e3dca5508e01&imgtype=0&src=http%3A%2F%2F02imgmini.eastday.com%2Fmobile%2F20181106%2F20181106170917_96c0333f9e103b4b1abc3ec6ab20fdbd_1.jpeg'
