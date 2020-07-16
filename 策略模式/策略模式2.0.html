@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>策略模式2.0</title>
+</head>
+
+<body>
+
+
+
+	<script>
+		// 当价格类型为“ 预售价” 时， 满 100 - 20， 不满 100 打 9 折
+		// 当价格类型为“ 大促价” 时， 满 100 - 30， 不满 100 打 8 折
+		// 当价格类型为“ 返场价” 时， 满 200 - 50， 不叠加
+		// 当价格类型为“ 尝鲜价” 时， 直接打 5 折
+		// 当价格类型为“ 新人价” 时， 满100 - 50
+
+		// 【价格标签化】
+		// 预售价 - pre
+		// 大促价 - onSale
+		// 返场价 - back
+		// 尝鲜价 - fresh
+		// 新人家 - newUser
+
+		// 处理预热价
+		function prePrice(originPrice) {
+			if (originPrice >= 100) {
+				return originPrice - 20
+			}
+			return originPrice * 0.9
+		}
+
+		// 处理大促价
+		function onSalePrice(originPrice) {
+			if (originPrice >= 100) {
+				return originPrice - 30
+			}
+			return originPrice * 0.8
+		}
+
+		// 处理返场价
+		function backPrice(originPrice) {
+			if (originPrice >= 200) {
+				return originPrice - 50
+			}
+			return originPrice
+		}
+
+		// 处理尝鲜价
+		function freshPrice(originPrice) {
+			return originPrice * 0.5
+		}
+
+		// 处理新人价
+		function newUser(originPrice) {
+			if (originPrice >= 100) {
+				return originPrice - 50;
+			}
+			return originPrice;
+		}
+
+		function askPrice(tag, originPrice) {
+			// 处理预热价
+			if (tag === 'pre') {
+				return prePrice(originPrice)
+			}
+			// 处理大促价
+			if (tag === 'onSale') {
+				return onSalePrice(originPrice)
+			}
+
+			// 处理返场价
+			if (tag === 'back') {
+				return backPrice(originPrice)
+			}
+
+			// 处理尝鲜价
+			if (tag === 'fresh') {
+				return freshPrice(originPrice)
+			}
+
+			// 处理新人价
+			if (tag === 'newUser') {
+				return newUser(originPrice)
+			}
+		}
+
+		console.log(askPrice('newUser', 160))
+	</script>
+</body>
+
+</html>
