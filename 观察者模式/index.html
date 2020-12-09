@@ -75,7 +75,7 @@
 				// prd的值发生改变
 				this.prdState = state
 				// 需求文档变更，立刻通知所有开发者
-				this.notify()
+				super.notify()
 			}
 		}
 
@@ -116,7 +116,8 @@
 		// 需求文档出现了
 		const prd = {
 			// 具体的需求内容
-			...
+			name: 'keller',
+			age: 24
 		}
 		// 韩梅梅开始拉群
 		hanMeiMei.add(liLei)
